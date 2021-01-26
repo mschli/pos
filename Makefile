@@ -22,4 +22,5 @@ clean:
 
 venv: setup.py
 	$(PYTHON) -m venv venv
+	$(VENV)$(PYTHON) -m pip install --upgrade pip setuptools wheel
 	$(VENV)pip install flake8
