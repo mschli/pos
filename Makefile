@@ -9,7 +9,7 @@ compile: venv
 	$(VENV)$(PYTHON) -m py_compile $(PYTHON_FILES)
 
 test: venv
-	$(VENV)$(PYTHON) setup.py test
+	$(VENV)pytest
 
 checkstyle: venv
 	$(VENV)$(CHECKSTYLE) $(PYTHON_FILES)

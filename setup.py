@@ -8,4 +8,5 @@ setup(name='python_optimization_server',
       python_requires='>=3.9',
       install_requires=['casadi', 'numpy', 'jsonpickle', 'flask'],
       setup_requires=['flake8'],
+      tests_require=['pytest'],
       test_suite="tests")
