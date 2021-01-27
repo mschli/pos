@@ -2,3 +2,5 @@ venv
 .eggs
 *.egg-info
 *pyc
+*.xml
+.coverage
