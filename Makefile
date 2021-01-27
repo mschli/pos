@@ -1,10 +1,11 @@
 VENV = venv/bin/
 PYTHON = python3
 CHECKSTYLE = flake8
+CHECKDOCS = pydocstyle --convention=numpy --add-ignore=D100 # No module docstring required.
 TEST = pytest
 PYTHON_FILES = $(shell find ./src -name "*.py")
 
-all: compile test checkstyle coverage
+all: compile test checkstyle coverage checkdocs
 
 compile: venv
 	$(VENV)$(PYTHON) -m py_compile $(PYTHON_FILES)
@@ -18,6 +19,9 @@ checkstyle: venv
 coverage: venv
 	$(VENV)$(TEST) --cov=./ --cov-report=xml
 
+checkdocs: venv
+	$(VENV)$(CHECKDOCS) $(PYTHON_FILES)
+
 clean:
 	find . -name "*.pyc" | xargs rm -f
 	find . -name "__pycache__" | xargs rm -rf
@@ -28,6 +32,6 @@ clean:
 
 venv: setup.py
 	$(PYTHON) -m venv venv
-	$(VENV)$(PYTHON) -m pip install --upgrade pip setuptools wheel pytest pytest-cov
+	$(VENV)$(PYTHON) -m pip install --upgrade pip setuptools wheel pytest pytest-cov pydocstyle sphinx
 	$(VENV)pip install flake8
 	$(VENV)pip install .[test]
